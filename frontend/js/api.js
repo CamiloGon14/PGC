@@ -1,5 +1,5 @@
 // api.js — cliente centralizado para comunicación con el backend
-const API_URL = "http://localhost:8000";
+const API_URL = (typeof window !== "undefined" && (window.API_URL || localStorage.getItem("API_URL"))) || "http://localhost:8000";
 
 async function apiFetch(endpoint, options = {}) {
   const url = `${API_URL}${endpoint}`;

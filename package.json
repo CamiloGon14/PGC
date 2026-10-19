@@ -1,0 +1,9 @@
+{
+  "name": "hospital-ubate-frontend",
+  "version": "2.0.0",
+  "description": "Sistema de Gestion Hospitalaria y Asistente Virtual ESE Hospital de Ubate",
+  "private": true,
+  "scripts": {
+    "build": "echo 'Build successful for static frontend'"
+  }
+}
