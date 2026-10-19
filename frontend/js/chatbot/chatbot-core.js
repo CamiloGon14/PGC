@@ -216,6 +216,67 @@
     }
   }
 
+  function findLocalAnswer(rawText) {
+    const text = (rawText || '').toLowerCase().trim();
+    if (!text) return null;
+
+    // 1. Buscar coincidencia en las preguntas del catálogo FAQ
+    if (faqData && Array.isArray(faqData.categories)) {
+      for (const cat of faqData.categories) {
+        if (!cat.items) continue;
+        for (const item of cat.items) {
+          const q = (item.question || '').toLowerCase();
+          if (text === q || text.includes(q) || q.includes(text)) {
+            return item.answer;
+          }
+        }
+      }
+
+      // 2. Buscar por coincidencia de palabras clave (keywords)
+      let bestItem = null;
+      let maxMatches = 0;
+      for (const cat of faqData.categories) {
+        if (!cat.items) continue;
+        for (const item of cat.items) {
+          if (!Array.isArray(item.keywords)) continue;
+          const matches = item.keywords.filter(kw => text.includes(kw.toLowerCase())).length;
+          if (matches > maxMatches) {
+            maxMatches = matches;
+            bestItem = item;
+          }
+        }
+      }
+      if (bestItem && maxMatches > 0) {
+        return bestItem.answer;
+      }
+    }
+
+    // 3. Respuestas orientativas institucionales generales
+    if (/motivo|sintoma|escribir|urgencia/.test(text)) {
+      return "En el campo 'Motivo de urgencia' debes escribir de forma breve la razón o molestia principal por la que acudes (por ejemplo: 'Fiebre persistente desde ayer' o 'Dolor abdominal agudo'). No es necesario usar términos técnicos.";
+    }
+    if (/codigo|publico/.test(text)) {
+      return "El Código Público es un identificador de 8 caracteres que se genera al completar el pre-registro. Permite a tus familiares o acompañantes consultar tu estado en el Módulo Acompañante sin exponer tu historia clínica.";
+    }
+    if (/documento|cedula|tarjeta|registro|ti|cc|rc/.test(text)) {
+      return "El sistema acepta Cédula de Ciudadanía (CC), Tarjeta de Identidad (TI), Registro Civil (RC), Cédula de Extranjería (CE), Pasaporte (PA), Permiso Especial (PEP) o la opción 'Menor sin identificación' si aún no cuenta con documento.";
+    }
+    if (/activo|egresado|estado/.test(text)) {
+      return "En el Módulo Acompañante, el estado 'Activo' indica que el paciente está en atención médica o en sala de observación. El estado 'Egresado' indica que el personal médico ya autorizó su alta hospitalaria o traslado.";
+    }
+    if (/horario|visita|acompanante/.test(text)) {
+      return "Se permite el acompañamiento permanente prioritariamente a menores de edad, adultos mayores y personas en condición de vulnerabilidad. Para los demás pacientes, las visitas están sujetas a la capacidad y normas del servicio de urgencias.";
+    }
+    if (/triage|tiempo|espera/.test(text)) {
+      return "En urgencias la atención se prioriza por la gravedad clínica clasificada en el Triage (Rojo: inmediato, Naranja: muy urgente, Amarillo: urgente, Verde: poco urgente), según la Resolución 5596 de 2015 del Ministerio de Salud.";
+    }
+    if (/diagnostico|medicina|pastilla|tomar|duele|enfermedad/.test(text)) {
+      return "Por motivos de seguridad del paciente y cumplimiento legal, no puedo brindar diagnósticos ni prescribir medicamentos. Por favor consulta de inmediato con el médico tratante o el personal de enfermería en urgencias.";
+    }
+
+    return null;
+  }
+
   async function handleSendMessage(rawText) {
     if (isSending || !rawText || !rawText.trim()) return;
 
@@ -280,6 +341,18 @@
           configData?.messages?.rate_limit_exceeded ||
           'Has alcanzado el límite de consultas por minuto. Por favor espera un momento.',
           false
+        );
+        return;
+      }
+
+      // Respuesta orientativa con la base de conocimiento local (FAQ institucional)
+      const localAnswer = findLocalAnswer(text);
+      if (localAnswer) {
+        ui.appendAssistantMessage(
+          localAnswer,
+          false,
+          hasPII,
+          configData?.messages?.disclaimer || 'Respuesta generada por asistente orientativo institucional.'
         );
         return;
       }
