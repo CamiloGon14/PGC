@@ -1,0 +1,268 @@
+// api.js — cliente centralizado para comunicación con el backend
+const API_URL = "http://localhost:8000";
+
+async function apiFetch(endpoint, options = {}) {
+  const url = `${API_URL}${endpoint}`;
+  const { headers: optHeaders, ...restOptions } = options;
+  const config = {
+    ...restOptions,
+    headers: {
+      "Content-Type": "application/json",
+      ...(optHeaders || {}),
+    },
+  };
+
+  const response = await fetch(url, config);
+
+  if (!response.ok) {
+    const error = await response.json().catch(() => ({ detail: "Error desconocido" }));
+    const detail = typeof error.detail === 'string'
+      ? error.detail
+      : JSON.stringify(error.detail);
+    throw new Error(detail || `Error ${response.status}`);
+  }
+
+  return response.json();
+}
+
+async function getAuthToken() {
+  try {
+    const { getApps } = await import("https://www.gstatic.com/firebasejs/12.12.0/firebase-app.js");
+    const { getAuth } = await import("https://www.gstatic.com/firebasejs/12.12.0/firebase-auth.js");
+    const apps = getApps();
+    if (!apps.length) return null;
+    const auth = getAuth(apps[0]);
+
+    // Si hay usuario activo, retornar token inmediatamente
+    if (auth.currentUser) {
+      return await auth.currentUser.getIdToken(false);
+    }
+
+    // Si no hay usuario aún, esperar hasta 3s a que Firebase restaure la sesión
+    return await new Promise((resolve) => {
+      const unsubscribe = auth.onAuthStateChanged(async (user) => {
+        unsubscribe();
+        if (!user) {
+          resolve(null);
+          return;
+        }
+        try {
+          const token = await user.getIdToken(false);
+          resolve(token);
+        } catch (e) {
+          resolve(null);
+        }
+      });
+      // Timeout de seguridad: 3 segundos
+      setTimeout(() => resolve(null), 5000);
+    });
+  } catch (e) {
+    return null;
+  }
+}
+
+async function apiFetchAuth(endpoint, options = {}) {
+  const token = await getAuthToken();
+  if (!token) throw new Error("No hay sesión activa. Por favor inicia sesión.");
+  return apiFetch(endpoint, {
+    ...options,
+    headers: {
+      ...(options.headers || {}),
+      Authorization: `Bearer ${token}`,
+    },
+  });
+}
+
+// ── Pacientes ──────────────────────────────────────────
+
+async function registerPatient(data) {
+  return apiFetch("/patients/register", {
+    method: "POST",
+    body: JSON.stringify(data),
+  });
+}
+
+async function getPatientByPublicCode(publicCode) {
+  return apiFetch(`/patients/companion/${publicCode}`);
+}
+
+async function getAllPatients() {
+  return apiFetchAuth("/patients/");
+}
+
+async function updatePatient(patientId, data) {
+  return apiFetchAuth(`/patients/${patientId}`, {
+    method: "PATCH",
+    body: JSON.stringify(data),
+  });
+}
+
+async function addProcedure(patientId, description, performedBy) {
+  return apiFetchAuth(`/patients/${patientId}/procedures`, {
+    method: "POST",
+    body: JSON.stringify({ description, performed_by: performedBy }),
+  });
+}
+
+async function getProcedures(patientId) {
+  return apiFetchAuth(`/patients/${patientId}/procedures`);
+}
+
+// ── Auth ───────────────────────────────────────────────
+
+async function verifyAndLogin(idToken) {
+  return apiFetch("/auth/verify", {
+    method: "POST",
+    body: JSON.stringify({ id_token: idToken }),
+  });
+}
+
+async function getMe() {
+  return apiFetchAuth("/auth/me");
+}
+
+// ── Staff ──────────────────────────────────────────────
+
+async function getAllStaff() {
+  return apiFetchAuth("/staff/");
+}
+
+async function getAuditLogs() {
+  return apiFetchAuth("/staff/audit");
+}
+
+async function getAuditByPatient(patientId) {
+  return apiFetchAuth(`/staff/audit/${patientId}`);
+}
+
+// ── Rooms ──────────────────────────────────────────────
+
+async function getRooms() {
+  return apiFetchAuth("/rooms/");
+}
+
+async function assignBed(bedId, patientId) {
+  return apiFetchAuth(`/rooms/beds/${bedId}/assign?patient_id=${patientId}`, {
+    method: "PATCH",
+  });
+}
+
+async function releaseBed(bedId) {
+  return apiFetchAuth(`/rooms/beds/${bedId}/release`, {
+    method: "PATCH",
+  });
+}
+
+// ── Doctors ────────────────────────────────────────────
+
+async function getDoctors() {
+  return apiFetchAuth("/doctors/");
+}
+
+// ── Admin: Rooms ───────────────────────────────────────
+
+async function createRoom(roomLabel) {
+  return apiFetchAuth("/rooms/", {
+    method: "POST",
+    body: JSON.stringify({ room_label: roomLabel }),
+  });
+}
+
+async function addBedToRoom(roomId, label) {
+  return apiFetchAuth(`/rooms/${roomId}/beds`, {
+    method: "POST",
+    body: JSON.stringify({ label }),
+  });
+}
+
+async function deactivateRoom(roomId) {
+  return apiFetchAuth(`/rooms/${roomId}`, {
+    method: "DELETE",
+  });
+}
+
+// ── Admin: Doctors ─────────────────────────────────────
+
+async function createDoctor(name) {
+  return apiFetchAuth("/doctors/", {
+    method: "POST",
+    body: JSON.stringify({ name }),
+  });
+}
+
+async function deactivateDoctor(doctorId) {
+  return apiFetchAuth(`/doctors/${doctorId}`, {
+    method: "DELETE",
+  });
+}
+
+// ── Chatbot Asistido por IA ────────────────────────────
+
+async function getChatbotConfig() {
+  return apiFetch("/chatbot/config");
+}
+
+async function chatbotConsent({ sessionId, consentVersion = "1.0", granted, context = "formulario", userAgent = null }) {
+  return apiFetch("/chatbot/consent", {
+    method: "POST",
+    body: JSON.stringify({
+      session_id: sessionId,
+      consent_version: consentVersion,
+      granted: Boolean(granted),
+      context: context,
+      user_agent: userAgent || navigator.userAgent
+    })
+  });
+}
+
+async function chatbotRevokeConsent({ sessionId }) {
+  return apiFetch("/chatbot/consent/revoke", {
+    method: "POST",
+    body: JSON.stringify({ session_id: sessionId })
+  });
+}
+
+async function chatbotSendMessage({ sessionId, message, context = "formulario" }) {
+  return apiFetch("/chatbot/message", {
+    method: "POST",
+    body: JSON.stringify({
+      session_id: sessionId,
+      message: message,
+      context: context
+    })
+  });
+}
+
+async function getChatbotAuditLogs(limit = 50) {
+  return apiFetchAuth(`/chatbot/staff/audit?limit=${limit}`);
+}
+
+window.eseb = window.eseb || {};
+window.eseb.api = {
+  registerPatient,
+  getPatientByPublicCode,
+  getAllPatients,
+  updatePatient,
+  addProcedure,
+  getProcedures,
+  verifyAndLogin,
+  getMe,
+  getAllStaff,
+  getAuditLogs,
+  getAuditByPatient,
+  getRooms,
+  assignBed,
+  releaseBed,
+  getDoctors,
+  createRoom,
+  addBedToRoom,
+  deactivateRoom,
+  createDoctor,
+  deactivateDoctor,
+  // Chatbot
+  getChatbotConfig,
+  chatbotConsent,
+  chatbotRevokeConsent,
+  chatbotSendMessage,
+  getChatbotAuditLogs
+};

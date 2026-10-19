@@ -1,0 +1,47 @@
+{
+  "version": "1.0",
+  "effective_date": "2026-05-01",
+  "responsible": "Empresa Social del Estado Hospital El Salvador de Ubaté - NIT 899.999.115-1",
+  "channel_habeas_data": "protecciondatos@hospitalubate.gov.co",
+  "short_summary": "Para utilizar este asistente virtual con Inteligencia Artificial, requerimos tu autorización previa, expresa e informada de conformidad con la Ley 1581 de 2012 y el Decreto 1377 de 2013 de Colombia.",
+  "bullet_points": [
+    "Finalidad exclusiva: Brindarte orientación sobre trámites administrativos, uso del formulario de pre-registro y consulta en el módulo acompañante.",
+    "Naturaleza de las respuestas: Son informativas y orientativas; NO constituyen diagnóstico, prescripción médica ni evaluación clínica.",
+    "Datos sensibles y no requeridos: No solicitamos ni debes ingresar datos clínicos, historial médico, documentos de identidad ni información sensible en este chat.",
+    "Transmisión internacional: El procesamiento del lenguaje natural se realiza mediante la infraestructura segura de Google AI Studio (Gemini), sujeta a estándares de confidencialidad.",
+    "Derechos del titular: Puedes conocer, actualizar, rectificar y solicitar la supresión de tus datos, o revocar esta autorización en cualquier momento."
+  ],
+  "checkboxes": {
+    "consent_required": "Autorizo el tratamiento de mis datos personales para interactuar con el asistente virtual con IA del Hospital de Ubaté bajo las finalidades indicadas.",
+    "minor_representative": "Declaro que el paciente es menor de edad y otorgo esta autorización en mi calidad de padre, madre o representante legal debidamente acreditado."
+  },
+  "full_legal_terms": {
+    "title": "Términos y Autorización de Tratamiento de Datos Personales (Ley 1581 de 2012)",
+    "sections": [
+      {
+        "heading": "1. Identificación del Responsable del Tratamiento",
+        "content": "La Empresa Social del Estado (E.S.E.) Hospital El Salvador de Ubaté, identificada con NIT 899.999.115-1, con domicilio en la Carrera 7 # 10-45, Ubaté, Cundinamarca, actúa como responsable del tratamiento de los datos recolectados a través de sus canales digitales."
+      },
+      {
+        "heading": "2. Finalidad del Tratamiento y Uso de Inteligencia Artificial",
+        "content": "Los datos capturados a través de esta herramienta conversacional se destinarán exclusivamente a la orientación técnica y operativa sobre el diligenciamiento del pre-registro de urgencias y la consulta del estado de pacientes en el módulo de acompañante. El servicio es asistido por un modelo de lenguaje de Inteligencia Artificial (Gemini 2.5 Flash)."
+      },
+      {
+        "heading": "3. Limitación Clínica Estricta (No Sustitución Médica)",
+        "content": "El usuario reconoce y acepta expresamente que el asistente virtual NO realiza actos médicos, diagnósticos, recetas, clasificación de triage ni modificaciones en la historia clínica. Ante cualquier sintomatología de urgencia vital, el usuario debe dirigirse presencialmente a la sala de urgencias o comunicarse a la línea nacional 123."
+      },
+      {
+        "heading": "4. Datos Sensibles y de Menores de Edad",
+        "content": "De conformidad con los artículos 5, 6 y 7 de la Ley 1581 de 2012, el titular no está obligado a suministrar información sensible relativa a su salud en este canal. En caso de menores de edad, la autorización debe ser otorgada por su representante legal velando siempre por el interés superior del menor."
+      },
+      {
+        "heading": "5. Transmisión Internacional de Datos",
+        "content": "El usuario queda informado de que los textos ingresados en la consulta se transmiten para su procesamiento técnico a los servidores del proveedor de inteligencia artificial (Google Cloud / Google AI Studio) bajo acuerdos de procesamiento de datos y salvaguardas de seguridad adecuadas."
+      },
+      {
+        "heading": "6. Derechos del Titular y Canales de Atención",
+        "content": "El titular cuenta con los derechos de acceso, rectificación, actualización, supresión y revocatoria del consentimiento consagrados en el artículo 8 de la Ley 1581 de 2012. Dichos derechos pueden ejercerse en cualquier momento mediante comunicación al correo protecciondatos@hospitalubate.gov.co o mediante el botón 'Revocar autorización' del propio widget."
+      }
+    ]
+  }
+}

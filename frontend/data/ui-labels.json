@@ -1,0 +1,26 @@
+{
+  "version": "1.0.0",
+  "chatbot": {
+    "launcher_text": "Asistente Virtual IA",
+    "launcher_aria": "Abrir asistente virtual de orientación con IA",
+    "close_window_aria": "Cerrar ventana del asistente",
+    "emergency_btn": "🚨 123 Urgencias",
+    "emergency_btn_aria": "Llamar o acudir de inmediato a Urgencias",
+    "input_placeholder": "Escribe tu consulta administrativa aquí...",
+    "send_btn_aria": "Enviar mensaje",
+    "char_count_format": "{current}/{max} caracteres",
+    "options_menu_aria": "Opciones del asistente",
+    "revoke_consent_btn": "Revocar autorización de datos",
+    "typing_indicator": "El asistente está escribiendo...",
+    "legal_modal_close": "Cerrar términos legales",
+    "accept_btn": "Aceptar y continuar",
+    "reject_btn": "No autorizo / Continuar sin asistente",
+    "view_terms_link": "Ver términos y política de datos completos (Ley 1581)"
+  },
+  "theme": {
+    "switch_to_dark": "Cambiar a tema oscuro",
+    "switch_to_light": "Cambiar a tema claro",
+    "current_dark": "Tema oscuro activo",
+    "current_light": "Tema claro activo"
+  }
+}

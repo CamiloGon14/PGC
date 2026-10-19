@@ -1,0 +1,45 @@
+{
+  "version": "1.0.0",
+  "brand": {
+    "name": "HOSPITAL DE UBATÉ",
+    "subtitle": "E.S.E. Hospital El Salvador",
+    "logo_text": "HOSPITAL DE UBATÉ"
+  },
+  "menu_items": [
+    {
+      "id": "nav-preregister",
+      "label": "Pre-registro Paciente",
+      "href": "index.html",
+      "icon": "📝",
+      "description": "Formulario de registro previo a la atención en urgencias."
+    },
+    {
+      "id": "nav-companion",
+      "label": "Módulo Acompañante",
+      "href": "companion.html",
+      "icon": "👥",
+      "description": "Consulta de estado y ubicación mediante código público."
+    },
+    {
+      "id": "nav-login",
+      "label": "Acceso Personal Asistencial",
+      "href": "login.html",
+      "icon": "🔒",
+      "description": "Ingreso exclusivo para médicos, enfermería y administración."
+    }
+  ],
+  "quick_actions": [
+    {
+      "id": "qa-chat",
+      "label": "Asistente Virtual IA",
+      "icon": "🤖",
+      "action": "openChatbot"
+    },
+    {
+      "id": "qa-theme",
+      "label": "Alternar Modo Oscuro/Claro",
+      "icon": "🌓",
+      "action": "toggleTheme"
+    }
+  ]
+}

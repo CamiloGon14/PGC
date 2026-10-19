@@ -1,0 +1,28 @@
+{
+  "version": "1.0.0",
+  "assistant_name": "Asistente Virtual Hospital de Ubaté",
+  "short_name": "Asistente ESE",
+  "welcome_greeting": "¡Hola! Soy el asistente virtual del Hospital de Ubaté. Puedo orientarte sobre el formulario de pre-registro, el módulo de acompañante, horarios y requisitos administrativos.",
+  "welcome_greeting_companion": "¡Hola! Te oriento para consultar la información autorizada del paciente mediante el código público y resolver dudas sobre normas de visita.",
+  "max_message_length": 500,
+  "inactivity_timeout_ms": 600000,
+  "rate_limit_max_requests": 15,
+  "rate_limit_window_seconds": 60,
+  "contacts": {
+    "emergency_national": "123",
+    "hospital_switchboard": "(601) 855 2222",
+    "hospital_urgencias": "(601) 855 3300",
+    "hospital_address": "Carrera 7 # 10-45, Ubaté, Cundinamarca",
+    "hospital_email_habeas_data": "protecciondatos@hospitalubate.gov.co",
+    "hospital_website": "https://www.hospitalubate.gov.co"
+  },
+  "messages": {
+    "disclaimer": "Respuesta generada por Inteligencia Artificial orientativa. No constituye consejo médico, diagnóstico ni sustituye al personal de salud.",
+    "emergency_alert": "⚠️ ALERTA DE URGENCIAS: Si estás experimentando dolor en el pecho, dificultad severa para respirar, sangrado profuso o pérdida del conocimiento, acude INMEDIATAMENTE al servicio de urgencias del hospital o comunícate con la línea 123.",
+    "pii_detected_warning": "Por tu seguridad y cumplimiento de la Ley 1581 de 2012, no ingreses números de documento, teléfonos ni datos médicos privados en el chat.",
+    "service_error": "El servicio de orientación no está disponible temporalmente. Puedes consultar con el personal en ventanilla de admisiones o llamar al (601) 855 2222.",
+    "rate_limit_exceeded": "Has alcanzado el límite de consultas por minuto. Por favor espera un momento antes de enviar otra pregunta.",
+    "consent_revoked": "Has revocado la autorización de tratamiento de datos. El chat ha sido deshabilitado.",
+    "offline_notice": "Sin conexión a internet. Verifica tu red e intenta nuevamente."
+  }
+}

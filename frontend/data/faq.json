@@ -1,0 +1,92 @@
+{
+  "version": "1.0.0",
+  "categories": [
+    {
+      "id": "pre_registro",
+      "title": "Formulario de Pre-registro",
+      "context": "formulario",
+      "items": [
+        {
+          "id": "faq-pre-1",
+          "question": "¿Qué debo escribir en el campo 'Motivo de urgencia'?",
+          "answer": "Describe brevemente el síntoma o molestia principal por el cual acudes (por ejemplo: 'Fiebre persistente desde hace 2 días', 'Dolor abdominal agudo' o 'Caída con golpe en el tobillo'). No es necesario usar términos médicos complicados.",
+          "keywords": ["motivo", "sintoma", "escribir", "razon", "urgencia"]
+        },
+        {
+          "id": "faq-pre-2",
+          "question": "¿Cuáles son los tipos de documento válidos?",
+          "answer": "Se aceptan: Cédula de Ciudadanía (CC), Tarjeta de Identidad (TI), Registro Civil (RC), Cédula de Extranjería (CE), Pasaporte (PA), Permiso Especial (PEP) o 'Menor sin identificación (MS)' si aún no cuenta con documento.",
+          "keywords": ["documento", "cedula", "tarjeta", "pasaporte", "identificacion", "tipo"]
+        },
+        {
+          "id": "faq-pre-3",
+          "question": "¿Qué ocurre después de enviar el pre-registro?",
+          "answer": "El sistema generará una pantalla con tu 'Código Público' de 8 caracteres y un código QR. Guarda este código y acércate a la ventanilla de Admisiones de Urgencias para confirmar tu llegada y continuar con la valoración de Triage por el personal de enfermería.",
+          "keywords": ["despues", "enviar", "pasos", "ventanilla", "triage"]
+        },
+        {
+          "id": "faq-pre-4",
+          "question": "¿Para qué sirve el Código Público?",
+          "answer": "Es un código único y anónimo que puedes compartir con tus familiares o acompañantes. Con él, ellos podrán consultar en tiempo real si ya fuiste admitido, tu habitación o camilla asignada y el estado general sin exponer tu historia clínica.",
+          "keywords": ["codigo", "publico", "para que sirve", "compartir", "familiar"]
+        },
+        {
+          "id": "faq-pre-5",
+          "question": "¿Por qué hay una casilla de consentimiento en el formulario?",
+          "answer": "La ley colombiana (Ley 1581 de 2012) exige que el hospital cuente con tu autorización previa para registrar y tratar tus datos de salud con el fin exclusivo de prestarte la atención médica en urgencias.",
+          "keywords": ["consentimiento", "formulario", "ley 1581", "casilla", "autorizacion"]
+        }
+      ]
+    },
+    {
+      "id": "acompanante",
+      "title": "Módulo de Acompañante",
+      "context": "acompanante",
+      "items": [
+        {
+          "id": "faq-acomp-1",
+          "question": "¿Cómo consulto el estado de mi familiar?",
+          "answer": "Ingresa el código público de 8 caracteres que te suministró el paciente o la ventanilla de admisiones y presiona 'Consultar'. El sistema te mostrará la información autorizada en tiempo real.",
+          "keywords": ["consultar", "codigo", "familiar", "estado", "acompanante"]
+        },
+        {
+          "id": "faq-acomp-2",
+          "question": "¿Qué significa el estado 'Activo' o 'Egresado'?",
+          "answer": "'Activo' indica que el paciente se encuentra en atención, en sala de espera de triage, en observación o en sala de procedimientos. 'Egresado' significa que el equipo médico ya ha dado el alta hospitalaria o traslado con fecha y hora registradas.",
+          "keywords": ["activo", "egresado", "significado", "estado"]
+        },
+        {
+          "id": "faq-acomp-3",
+          "question": "¿Por qué no puedo ver los procedimientos o el diagnóstico?",
+          "answer": "Por reserva de la historia clínica (Resolución 1995 de 1999) y confidencialidad médica, los procedimientos y el diagnóstico solo se muestran si el paciente y el médico tratante autorizaron expresamente compartirlos con acompañantes.",
+          "keywords": ["diagnostico", "procedimientos", "privado", "no se ve", "reserva"]
+        },
+        {
+          "id": "faq-acomp-4",
+          "question": "¿Cuáles son las políticas de ingreso para acompañantes?",
+          "answer": "Por bioseguridad y comodidad en urgencias, se permite un (1) acompañante permanente para menores de edad, adultos mayores o pacientes en condición de vulnerabilidad. Para los demás pacientes, las visitas se coordinan según el área de estancia.",
+          "keywords": ["visita", "horarios", "ingreso", "politica", "permanencia"]
+        }
+      ]
+    },
+    {
+      "id": "triage_general",
+      "title": "Triage y Urgencias",
+      "context": "general",
+      "items": [
+        {
+          "id": "faq-triage-1",
+          "question": "¿Cómo se define el orden de atención en Urgencias?",
+          "answer": "La atención no se realiza por orden de llegada, sino por gravedad clínica según la escala de Triage (Resolución 5596 de 2015 del Ministerio de Salud): Triage 1 (Rojo - Inmediato), Triage 2 (Naranja - Muy urgente), Triage 3 (Amarillo - Urgente), Triage 4 y 5 (Verde/Azul - Menor urgencia).",
+          "keywords": ["triage", "orden", "atencion", "clasificacion", "tiempo"]
+        },
+        {
+          "id": "faq-triage-2",
+          "question": "¿Qué hacer si los síntomas empeoran mientras espero?",
+          "answer": "Acércate de inmediato al personal de enfermería en el puesto de triage para informar el cambio o aumento en los síntomas y solicitar una revaloración inmediata.",
+          "keywords": ["empeora", "espera", "sintomas", "enfermeria", "revalorar"]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Acceso Personal</title>
+
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <header class="topbar">
+
+        <!-- Boton de volver a la pagina principal  -->
+        <!-- <a href="index.html" class="" aria-label="Volver al inicio" style="text-decoration:none;">
+            &#8592;
+        </a> -->
+        <h1 class="hospital-name">HOSPITAL DE UBATÉ</h1>
+    </header>
+
+    <main class="container">
+        <section class="card page-card">
+            <h2>ACCESO DEL PERSONAL</h2>
+            <p class="muted" style="margin-top: 0;">
+                Ingreso exclusivo para personal médico y administrativo autorizado.
+            </p>
+
+            <div class="page-box">
+                <h3 style="margin-top: 5; margin-bottom: 8px; color: var(--primary-2);">
+                    Iniciar sesión con Google
+                </h3>
+                <p class="muted" style="margin-top: 0;">
+                    Usa únicamente una cuenta autorizada por la institución.
+                </p>
+
+                <button class="btn primary" id="btn-google-login" type="button" style="width: 100%; margin-top: 8px;">
+                    Continuar con Google
+                </button>
+
+                <div id="auth-message" class="small-muted page-message"></div>
+            </div>
+
+            <!-- <div class="page-box">
+                <h3 style="margin-top: 0; margin-bottom: 8px; color: var(--primary-2);">
+                    Acceso por rol
+                </h3>
+                <p class="muted" style="margin-top: 0;">
+                    Después del ingreso, el sistema enviará al usuario al panel correspondiente:
+                    médico o administración.
+                </p>
+
+                <div class="page-actions">
+                    <span class="badge">Médico</span>
+                    <span class="badge">Administración</span>
+                </div>
+            </div> -->
+
+            <p class="small-muted" style="margin-top: 16px;">
+                Si no tienes una cuenta autorizada, debes solicitar acceso al administrador.
+            </p>
+        </section>
+    </main>
+
+    <script type="module" src="js/login.js"></script>
+</body>
+</html>

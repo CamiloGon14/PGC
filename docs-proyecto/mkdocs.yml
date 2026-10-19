@@ -1,0 +1,24 @@
+site_name: Hospital de Ubaté
+site_description: Documentación técnica del sistema de gestión hospitalaria
+theme:
+  name: material
+  language: es
+  palette:
+    primary: blue
+    accent: cyan
+
+nav:
+  - Inicio: index.md
+  - Backend:
+    - Arquitectura: backend/arquitectura.md
+    - Base de datos: backend/base-de-datos.md
+    - API endpoints: backend/api.md
+    - Chatbot IA (Gemini): backend/chatbot.md
+  - Frontend:
+    - Estructura: frontend/estructura.md
+    - Módulos JS: frontend/modulos.md
+    - Asistente Virtual IA: frontend/chatbot.md
+  - Guía de uso:
+    - Instalación: guia/instalacion.md
+    - Pruebas y casos CB: guia/pruebas.md
+    - Cumplimiento y Habeas Data: guia/cumplimiento.md
